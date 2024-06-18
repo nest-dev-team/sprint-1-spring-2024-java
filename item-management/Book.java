@@ -1,11 +1,5 @@
-public abstract class Book extends LibraryItem {
-    // instance variables
-    private String category;
-
-    // constructor
-    public Book(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
-            String category) {
+public class Book extends LibraryItem {
+    public Book(String itemId, String title, Author author, String ISBN, String publisher, int numCopies) {
         super(itemId, title, author, ISBN, publisher, numCopies);
-        this.category = category;
     }
 }
