@@ -75,6 +75,6 @@ public abstract class LibraryItem {
     @Override
     public String toString() {
         return String.format("Item ID: %s\nTitle: %s\nAuthor: %s\nISBN: %s\nPublisher: %s\nNumber of Copies: %d",
-                itemId, title, author, ISBN, publisher, numCopies);
+                itemId, title, author.getName(), ISBN, publisher, numCopies);
     }
 }

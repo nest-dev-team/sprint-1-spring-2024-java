@@ -1,13 +1,13 @@
 public class BookPrinted extends Book {
     // instance variables
     private int numPages;
-    private Boolean hardcover;
+    private boolean hardcover;
 
     // constructors
     public BookPrinted(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
             String edition,
             String category, int numPages,
-            Boolean hardcover) {
+            boolean hardcover) {
         super(itemId, title, author, ISBN, publisher, numCopies, edition, category);
         this.numPages = numPages;
         this.hardcover = hardcover;
@@ -22,11 +22,11 @@ public class BookPrinted extends Book {
         this.numPages = numPages;
     }
 
-    public Boolean isHardcover() {
+    public boolean isHardcover() {
         return hardcover;
     }
 
-    public void setHardcover(Boolean hardcover) {
+    public void setHardcover(boolean hardcover) {
         this.hardcover = hardcover;
     }
 

@@ -23,6 +23,6 @@ public class PeriodicalElectronic extends Periodical {
     // methods
     @Override
     public String toString() {
-        return super.toString() + String.format("URL: %s", url);
+        return super.toString() + String.format("\nURL: %s", url);
     }
 }

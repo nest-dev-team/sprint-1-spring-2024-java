@@ -1,6 +1,6 @@
 public class BookAudio extends Book {
     // instance variables
-    private Boolean DRM;
+    private boolean DRM;
     private double length; // in hours
     private String narrator;
 
@@ -8,7 +8,7 @@ public class BookAudio extends Book {
     public BookAudio(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
             String edition,
             String category,
-            Boolean DRM,
+            boolean DRM,
             double length, String narrator) {
         super(itemId, title, author, ISBN, publisher, numCopies, edition, category);
         this.DRM = DRM;
@@ -17,11 +17,11 @@ public class BookAudio extends Book {
     }
 
     // getters and setters
-    public Boolean hasDRM() {
+    public boolean hasDRM() {
         return DRM;
     }
 
-    public void setDRM(Boolean DRM) {
+    public void setDRM(boolean DRM) {
         this.DRM = DRM;
     }
 

@@ -1,13 +1,13 @@
 public class BookElectronic extends Book {
     // instance variables
-    private Boolean DRM;
+    private boolean DRM;
     private String url;
 
     // constructors
     public BookElectronic(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
             String edition,
             String category,
-            Boolean DRM, String url) {
+            boolean DRM, String url) {
         super(itemId, title, author, ISBN, publisher, numCopies, edition, category);
         this.DRM = DRM;
         this.url = url;

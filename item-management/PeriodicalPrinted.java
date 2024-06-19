@@ -23,6 +23,6 @@ public class PeriodicalPrinted extends Periodical {
     // methods
     @Override
     public String toString() {
-        return super.toString() + String.format("Number of Pages: %s", numPages);
+        return super.toString() + String.format("\nNumber of Pages: %s", numPages);
     }
 }
