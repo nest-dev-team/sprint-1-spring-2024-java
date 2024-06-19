@@ -19,4 +19,10 @@ public class PeriodicalElectronic extends Periodical {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    // methods
+    @Override
+    public String toString() {
+        return super.toString() + String.format("URL: %s", url);
+    }
 }

@@ -1,7 +1,7 @@
 public class Book extends LibraryItem {
     // instance variables
-    public String edition;
-    public String category;
+    private String edition;
+    private String category;
 
     // constructors
     public Book(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
@@ -26,5 +26,11 @@ public class Book extends LibraryItem {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    // methods
+    @Override
+    public String toString() {
+        return super.toString() + String.format("\nEdition: %s\nCategory: %s", edition, category);
     }
 }

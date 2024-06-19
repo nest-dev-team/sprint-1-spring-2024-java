@@ -1,6 +1,6 @@
 public class PeriodicalPrinted extends Periodical {
     // instance variables
-    public int numPages;
+    private int numPages;
 
     // constructors
     public PeriodicalPrinted(String itemId, String title, Author author, String ISBN, String publisher,
@@ -18,5 +18,11 @@ public class PeriodicalPrinted extends Periodical {
 
     public void setNumPages(int numPages) {
         this.numPages = numPages;
+    }
+
+    // methods
+    @Override
+    public String toString() {
+        return super.toString() + String.format("Number of Pages: %s", numPages);
     }
 }

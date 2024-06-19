@@ -1,7 +1,7 @@
 public abstract class Periodical extends LibraryItem {
     // instance variables
-    public String issueNumber;
-    public String publicationDate;
+    private String issueNumber;
+    private String publicationDate;
     private String frequency;
 
     // constructors
@@ -42,7 +42,7 @@ public abstract class Periodical extends LibraryItem {
     // methods
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return super.toString() + String.format("\nIssue Number: %s\nPublication Date: %s\nFrequency: %s", issueNumber,
+                publicationDate, frequency);
     }
 }

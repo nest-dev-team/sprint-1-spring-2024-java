@@ -74,7 +74,7 @@ public abstract class LibraryItem {
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return super.toString();
+        return String.format("Item ID: %s\nTitle: %s\nAuthor: %s\nISBN: %s\nPublisher: %s\nNumber of Copies: %d",
+                itemId, title, author, ISBN, publisher, numCopies);
     }
 }

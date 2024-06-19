@@ -30,4 +30,10 @@ public class BookElectronic extends Book {
         this.url = url;
     }
 
+    // methods
+    @Override
+    public String toString() {
+        return super.toString() + String.format("\nURL: %s\nDRM: %b", url, DRM);
+    }
+
 }

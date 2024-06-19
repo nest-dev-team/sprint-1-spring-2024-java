@@ -1,7 +1,7 @@
 public class BookPrinted extends Book {
     // instance variables
-    public int numPages;
-    public Boolean hardcover;
+    private int numPages;
+    private Boolean hardcover;
 
     // constructors
     public BookPrinted(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
@@ -28,5 +28,11 @@ public class BookPrinted extends Book {
 
     public void setHardcover(Boolean hardcover) {
         this.hardcover = hardcover;
+    }
+
+    // methods
+    @Override
+    public String toString() {
+        return super.toString() + String.format("\nNumber of Pages: %d\nHardcover: %b", numPages, hardcover);
     }
 }

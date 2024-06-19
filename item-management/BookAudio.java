@@ -1,8 +1,8 @@
 public class BookAudio extends Book {
     // instance variables
-    public Boolean DRM;
-    public double length; // in hours
-    public String narrator;
+    private Boolean DRM;
+    private double length; // in hours
+    private String narrator;
 
     // constructors
     public BookAudio(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
@@ -39,5 +39,20 @@ public class BookAudio extends Book {
 
     public void setNarrator(String narrator) {
         this.narrator = narrator;
+    }
+
+    // methods
+    public String getLengthString() {
+        long hours = Math.round(Math.floor(length));
+        long minutes = Math.round(Math.floor((length - hours) * 60));
+        long seconds = Math.round(((((length - hours) * 60) - minutes) * 60));
+
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()
+                + String.format("\nLength: %s\nNarrator: %s\nDRM: %b", getLengthString(), narrator, DRM);
     }
 }
