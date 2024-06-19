@@ -1,24 +1,34 @@
 public abstract class Periodical extends LibraryItem {
     // instance variables
-    private String description;
+    public String issueNumber;
+    public String publicationDate;
     private String frequency;
 
-    // constructor
+    // constructors
     public Periodical(String itemId, String title, Author author, String ISBN, String publisher, int numCopies,
-            String description,
+            String issueNumber, String publicationDate,
             String frequency) {
         super(itemId, title, author, ISBN, publisher, numCopies);
-        this.description = description;
+        this.issueNumber = issueNumber;
+        this.publicationDate = publicationDate;
         this.frequency = frequency;
     }
 
     // getters and setters
-    public String getDescription() {
-        return description;
+    public String getIssueNumber() {
+        return issueNumber;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setIssueNumber(String issueNumber) {
+        this.issueNumber = issueNumber;
+    }
+
+    public String getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public String getFrequency() {
