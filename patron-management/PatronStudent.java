@@ -1,6 +1,6 @@
 
 public class PatronStudent extends Patron {
-    //add more stuff here
+    
     String studentId;
 
     //constructor
