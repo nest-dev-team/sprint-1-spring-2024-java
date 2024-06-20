@@ -1,7 +1,7 @@
 import java.util.List;
 //import list
 
-public class Patron {
+public abstract class Patron {
     //instance variables
     private String name;
     private String address;
