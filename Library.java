@@ -59,44 +59,10 @@ public class Library {
         // TODO
     }
 
-
-    // delete item by title, author, or ISBN
-    // need to enhance by verifying if the item is the one the user wants to delete
-    // check if we can accept just one input for the delete method and then search for the item without asking for the type of search
-    public void deleteItemByTitle(String title) {
-        LibraryItem itemToDelete = searchByTitle(title);
-    
-        if (itemToDelete != null) {
-            items.remove(itemToDelete);
-            System.out.println("Library item deleted.");
-        } else {
-            System.out.println("Library item not found.");
-        }
-    }
-    
-    // what if there are multiple items by the same author?
-    public void deleteItemByAuthor(Author author) {
-        String authorName = author.getName();
-        LibraryItem itemToDelete = searchByAuthor(authorName);
-    
-        if (itemToDelete != null) {
-            items.remove(itemToDelete);
-            System.out.println("Library item deleted.");
-        } else {
-            System.out.println("Library item not found.");
-        }
+    public void deleteItem(LibraryItem item) {
+        this.items.remove(item);
     }
 
-    public void deleteItemByISBN(String ISBN) {
-        LibraryItem itemToDelete = searchByISBN(ISBN);
-    
-        if (itemToDelete != null) {
-            items.remove(itemToDelete);
-            System.out.println("Library item deleted.");
-        } else {
-            System.out.println("Library item not found.");
-        }
-    }
 
 
     // author methods
@@ -349,6 +315,21 @@ public class Library {
                     break;
 
                 case 2:
+                    // Option for user to edit by title, author, or ISBN
+                    System.out.println("Do you want to edit by 1) Title, 2) Author Name, or 3) ISBN?");
+                    int editchoice = scanner.nextInt();
+                    scanner.nextLine(); 
+                    switch (editchoice) {
+                        case 1:
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            System.out.println("Invalid choice.");
+                            break;
+                    }
                     break;
 
                 case 3:
@@ -360,17 +341,38 @@ public class Library {
                         case 1:
                             System.out.print("Enter Title of the item to delete: ");
                             String titleToDelete = scanner.nextLine();
-                            this.deleteItemByTitle(titleToDelete);
+                            LibraryItem itemToDeleteT = searchByTitle(titleToDelete);
+    
+                            if (itemToDeleteT != null) {
+                                items.remove(itemToDeleteT);
+                                System.out.println("Library item deleted.");
+                            } else {
+                                System.out.println("Library item not found.");
+                            }
                             break;
                         case 2:
                             System.out.print("Enter Author Name of the item to delete: ");
                             String authorToDelete = scanner.nextLine();
-                            this.deleteItemByAuthor(new Author(authorToDelete));
+                            LibraryItem itemToDeleteA = searchByAuthor(authorToDelete);
+                        
+                            if (itemToDeleteA != null) {
+                                items.remove(itemToDeleteA);
+                                System.out.println("Library item deleted.");
+                            } else {
+                                System.out.println("Library item not found.");
+                            }
                             break;
                         case 3:
                             System.out.print("Enter ISBN of the item to delete: ");
                             String isbnToDelete = scanner.nextLine();
-                            this.deleteItemByISBN(isbnToDelete);
+                            LibraryItem itemToDeleteI = searchByISBN(isbnToDelete);
+    
+                            if (itemToDeleteI != null) {
+                                items.remove(itemToDeleteI);
+                                System.out.println("Library item deleted.");
+                            } else {
+                                System.out.println("Library item not found.");
+                            }
                             break;
                         default:
                             System.out.println("Invalid choice.");
