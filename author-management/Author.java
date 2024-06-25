@@ -12,6 +12,10 @@ public class Author {
         this.itemsWritten = new ArrayList<>();
     }
 
+    public Author(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
