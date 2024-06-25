@@ -16,19 +16,20 @@ public class Library {
     // library item methods
     public LibraryItem searchByTitle(String title) {
         LibraryItem result = null;
-    
+
         for (LibraryItem item : items) {
             if (item.getTitle().equalsIgnoreCase(title)) {
                 result = item;
                 break;
             }
         }
-    
+
         return result;
     }
+
     public LibraryItem searchByAuthor(String authorName) {
         LibraryItem result = null;
-    
+
         for (LibraryItem item : items) {
             if (item.getAuthor().getName().equals(authorName)) {
                 result = item;
@@ -40,14 +41,14 @@ public class Library {
 
     public LibraryItem searchByISBN(String ISBN) {
         LibraryItem result = null;
-    
+
         for (LibraryItem item : items) {
             if (item.getISBN().equals(ISBN)) {
                 result = item;
                 break;
             }
         }
-    
+
         return result;
     }
 
@@ -62,8 +63,6 @@ public class Library {
     public void deleteItem(LibraryItem item) {
         this.items.remove(item);
     }
-
-
 
     // author methods
     public void addAuthor(String name, String dateOfBirth) {
@@ -111,6 +110,7 @@ public class Library {
     // managers
     public void authorManager(Scanner scanner) {
         while (true) {
+            Menu.clearScreen();
             System.out.println("Author Management\n");
             System.out.println("1. Add Author");
             System.out.println("2. Edit Author");
@@ -169,6 +169,7 @@ public class Library {
 
     public void itemManager(Scanner scanner) {
         while (true) {
+            Menu.clearScreen();
             System.out.println("Item Management\n");
             System.out.println("1. Add Item");
             System.out.println("2. Edit Item");
@@ -297,6 +298,7 @@ public class Library {
                                 boolean DRMAudio = scanner.nextBoolean();
                                 System.out.print("Enter length (as decimal number): ");
                                 double length = scanner.nextDouble();
+                                System.out.println("\n");
 
                                 BookAudio newAudioBookItem = new BookAudio(itemID, title, itemAuthor, ISBN, publisher,
                                         numCopies,
@@ -306,10 +308,10 @@ public class Library {
                             default:
                                 break;
                         }
-
                     }
 
-                    System.out.println("Item added successfully.");
+                    System.out.println("");
+                    System.out.println("\nItem added successfully.");
                     System.out.println("Press any key to continue...");
                     scanner.nextLine();
                     break;
@@ -318,7 +320,7 @@ public class Library {
                     // Option for user to edit by title, author, or ISBN
                     System.out.println("Do you want to edit by 1) Title, 2) Author Name, or 3) ISBN?");
                     int editchoice = scanner.nextInt();
-                    scanner.nextLine(); 
+                    scanner.nextLine();
                     switch (editchoice) {
                         case 1:
                             break;
@@ -342,7 +344,7 @@ public class Library {
                             System.out.print("Enter Title of the item to delete: ");
                             String titleToDelete = scanner.nextLine();
                             LibraryItem itemToDeleteT = searchByTitle(titleToDelete);
-    
+
                             if (itemToDeleteT != null) {
                                 items.remove(itemToDeleteT);
                                 System.out.println("Library item deleted.");
@@ -354,7 +356,7 @@ public class Library {
                             System.out.print("Enter Author Name of the item to delete: ");
                             String authorToDelete = scanner.nextLine();
                             LibraryItem itemToDeleteA = searchByAuthor(authorToDelete);
-                        
+
                             if (itemToDeleteA != null) {
                                 items.remove(itemToDeleteA);
                                 System.out.println("Library item deleted.");
@@ -366,7 +368,7 @@ public class Library {
                             System.out.print("Enter ISBN of the item to delete: ");
                             String isbnToDelete = scanner.nextLine();
                             LibraryItem itemToDeleteI = searchByISBN(isbnToDelete);
-    
+
                             if (itemToDeleteI != null) {
                                 items.remove(itemToDeleteI);
                                 System.out.println("Library item deleted.");
@@ -380,6 +382,7 @@ public class Library {
                     }
                     System.out.println("\nPress any key to continue...");
                     scanner.nextLine();
+                    break;
 
                 case 4:
                     this.listItems();
