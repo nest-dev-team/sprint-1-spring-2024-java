@@ -1,16 +1,3 @@
-// Make sure to update Main class in Main.java and add another addAuthor method in Library.java
-
-// public class Main {
-//     public static void main(String[] args) {
-//         Library library = new Library();
-//         TestData.loadItems(library);
-//     }
-// }
-
-// public void addAuthor(Author author) {
-//     this.authors.add(author);
-// }
-
 public class TestData {
         public static void loadItems(Library library) {
                 // Create authors
@@ -255,7 +242,82 @@ public class TestData {
                 library.addItem(audioBook9);
                 library.addItem(audioBook10);
 
-                Patron patron1 = new PatronStudent("Elliott Butt", "Address", "1", "1232");
-                library.addPatron(patron1);
+        // Create and add Audio Books
+        BookAudio audioBook1 = new BookAudio(
+            "B021", "Harry Potter and the Prisoner of Azkaban", author1, "9780747546290", "Bloomsbury", 
+            10, "First", "Fantasy", true, 12.5, "Stephen Fry"
+        );
+        BookAudio audioBook2 = new BookAudio(
+            "B022", "A Storm of Swords", author2, "9780553573428", "Bantam Spectra", 
+            6, "First", "Fantasy", true, 48.0, "Roy Dotrice"
+        );
+        BookAudio audioBook3 = new BookAudio(
+            "B023", "Misery", author3, "9780670813650", "Viking", 
+            5, "First", "Horror", true, 14.5, "Lindsay Crouse"
+        );
+        BookAudio audioBook4 = new BookAudio(
+            "B024", "The Murder of Roger Ackroyd", author4, "9780007136834", "Collins Crime Club", 
+            4, "First", "Mystery", true, 13.5, "Hugh Fraser"
+        );
+        BookAudio audioBook5 = new BookAudio(
+            "B025", "The Fellowship of the Ring", author5, "9780261102354", "George Allen & Unwin", 
+            9, "First", "Fantasy", true, 19.5, "Rob Inglis"
+        );
+        BookAudio audioBook6 = new BookAudio(
+            "B026", "The Adventures of Tom Sawyer", author6, "9780553211603", "American Publishing Company", 
+            6, "First", "Adventure", true, 7.5, "William Dufris"
+        );
+        BookAudio audioBook7 = new BookAudio(
+            "B027", "For Whom the Bell Tolls", author7, "9780684803357", "Charles Scribner's Sons", 
+            5, "First", "Literary Fiction", true, 16.5, "Campbell Scott"
+        );
+        BookAudio audioBook8 = new BookAudio(
+            "B028", "Emma", author8, "9780141199528", "T. Egerton", 
+            7, "First", "Romance", true, 14.0, "Juliet Stevenson"
+        );
+        BookAudio audioBook9 = new BookAudio(
+            "B029", "David Copperfield", author9, "9781853260247", "Chapman & Hall", 
+            8, "First", "Historical Fiction", true, 36.5, "Martin Jarvis"
+        );
+        BookAudio audioBook10 = new BookAudio(
+            "B030", "The Beautiful and Damned", author10, "9780684801483", "Charles Scribner's Sons", 
+            11, "First", "Tragedy", true, 17.5, "Robert Fass"
+        );
+        library.addItem(audioBook1);
+        library.addItem(audioBook2);
+        library.addItem(audioBook3);
+        library.addItem(audioBook4);
+        library.addItem(audioBook5);
+        library.addItem(audioBook6);
+        library.addItem(audioBook7);
+        library.addItem(audioBook8);
+        library.addItem(audioBook9);
+        library.addItem(audioBook10);
+
+        // Create and add Employee Patrons
+        PatronEmployee employee1 = new PatronEmployee("Alice Smith", "123 Main St", "555-1234", "Employee", "E001");
+        PatronEmployee employee2 = new PatronEmployee("Bob Johnson", "456 Elm St", "555-5678", "Employee", "E002");
+        PatronEmployee employee3 = new PatronEmployee("Carol Williams", "789 Oak St", "555-8765", "Employee", "E003");
+        PatronEmployee employee4 = new PatronEmployee("David Brown", "101 Pine St", "555-4321", "Employee", "E004");
+        PatronEmployee employee5 = new PatronEmployee("Eve Davis", "202 Maple St", "555-1357", "Employee", "E005");
+
+        library.addPatron(employee1);
+        library.addPatron(employee2);
+        library.addPatron(employee3);
+        library.addPatron(employee4);
+        library.addPatron(employee5);
+
+        // Create and add Student Patrons
+        PatronStudent student1 = new PatronStudent("Frank Moore", "303 Birch St", "555-2468", "Student", "S001");
+        PatronStudent student2 = new PatronStudent("Grace Hall", "404 Cedar St", "555-3579", "Student", "S002");
+        PatronStudent student3 = new PatronStudent("Hank Adams", "505 Walnut St", "555-4680", "Student", "S003");
+        PatronStudent student4 = new PatronStudent("Ivy Baker", "606 Ash St", "555-5791", "Student", "S004");
+        PatronStudent student5 = new PatronStudent("Jack Carter", "707 Beech St", "555-6802", "Student", "S005");
+
+        library.addPatron(student1);
+        library.addPatron(student2);
+        library.addPatron(student3);
+        library.addPatron(student4);
+        library.addPatron(student5);
         }
 }
