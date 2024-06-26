@@ -180,7 +180,6 @@ public class Library {
             scanner.nextLine();
 
             int numberToBorrow;
-            int origCopies;
             String title;
             String ISBN;
             String patronName;
@@ -253,6 +252,8 @@ public class Library {
                     Author authorResult = searchAuthor(authorName);
                     if (authorResult == null) {
                         System.out.println("Author does not exist.");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
                         break;
                     }
 
@@ -697,16 +698,43 @@ public class Library {
                             }
                             break;
                         case 2:
-                            System.out.print("Enter Author Name of the item to delete: ");
-                            String authorToDelete = scanner.nextLine();
-                            LibraryItem itemToDeleteA = searchByAuthor(authorToDelete);
+                            Menu.clearScreen();
 
-                            if (itemToDeleteA != null) {
-                                items.remove(itemToDeleteA);
-                                System.out.println("Library item deleted.");
-                            } else {
-                                System.out.println("Library item not found.");
+                            System.out.print("Enter author name: ");
+                            String authorNameDelete = scanner.nextLine();
+
+                            // check if author exists
+                            Author authorResult = searchAuthor(authorNameDelete);
+                            if (authorResult == null) {
+                                System.out.println("Author does not exist.");
+                                break;
                             }
+
+                            // display all titles by provided author
+                            List<LibraryItem> authorList = searchByAuthor(authorNameDelete);
+                            listAuthorItems(authorList, authorResult);
+
+                            //
+                            System.out.print("Enter title from titles list: ");
+                            title = scanner.nextLine();
+
+                            // check if item exists
+                            LibraryItem titleResult = null;
+                            for (LibraryItem item : authorList) {
+                                if (item.getTitle().equals(title)) {
+                                    titleResult = item;
+                                }
+                            }
+
+                            if (titleResult == null) {
+                                System.out.println("Title not in list.");
+                                System.out.print("\nPress any key to continue...");
+                                scanner.nextLine();
+                                break;
+                            }
+
+                            items.remove(titleResult);
+                            System.out.println("Library item deleted.");
                             break;
                         case 3:
                             System.out.print("Enter ISBN of the item to delete: ");
