@@ -1,3 +1,8 @@
+// JAVA - Sprint 1
+// Elliott Butt, Joseph Flores, Zachary Hulan
+// June 26, 2024
+
+
 import java.util.Scanner;
 
 public class Menu {
@@ -9,10 +14,12 @@ public class Menu {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Library library = new Library();
+        // Load test data   
         TestData.loadItems(library);
         clearScreen();
 
         while (true) {
+            // Display main menu
             clearScreen();
             System.out.println("Library Management System\n");
             System.out.println("1. Borrow Items");

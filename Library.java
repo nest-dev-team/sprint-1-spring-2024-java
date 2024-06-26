@@ -14,6 +14,8 @@ public class Library {
     }
 
     // library item methods
+
+    // search method for library items by title
     public LibraryItem searchByTitle(String title) {
         LibraryItem result = null;
 
@@ -27,10 +29,12 @@ public class Library {
         return result;
     }
 
+    // search method for library items by author
     public List<LibraryItem> searchByAuthor(Author author) {
         return author.getItemsWritten();
     }
 
+    // search method for library items by ISBN
     public LibraryItem searchByISBN(String ISBN) {
         LibraryItem result = null;
 
@@ -44,6 +48,7 @@ public class Library {
         return result;
     }
 
+    // search method for patrons
     public Patron searchPatron(String patronName) {
         Patron result = null;
 
@@ -57,6 +62,7 @@ public class Library {
         return result;
     }
 
+    // search method for authors
     public Author searchAuthor(String name) {
         Author result = null;
 
@@ -70,16 +76,22 @@ public class Library {
         return result;
     }
 
+    // patron methods
+
+    // add patron method
     public void addPatron(Patron patron) {
         this.patrons.add(patron);
     }
 
+    // add item method
     public void addItem(LibraryItem item) {
         this.items.add(item);
     }
 
+    // edit item method
     public LibraryItem editItem(LibraryItem item, String param, String newValue) {
         switch (param) {
+            // switch statement to determine which parameter to edit
             case "Title":
                 item.setTitle(newValue);
                 System.out.println("Title updated successfully.");
@@ -123,11 +135,14 @@ public class Library {
         return item;
     }
 
+    // delete item method
     public void deleteItem(LibraryItem item) {
         this.items.remove(item);
     }
 
     // author methods
+
+    // add author methods
     public void addAuthor(String name, String dateOfBirth) {
         Author author = new Author(name, dateOfBirth);
         this.authors.add(author);
@@ -137,6 +152,7 @@ public class Library {
         this.authors.add(author);
     }
 
+    // edit author method
     public void editAuthor(String name, String newName, String newDateOfBirth) {
         for (Author author : authors) {
             if (author.getName().equals(name)) {
@@ -149,6 +165,7 @@ public class Library {
         System.out.println("Author not found. Press any key to continue...");
     }
 
+    // delete author method
     public void deleteAuthor(String name) {
         boolean isRemoved = authors.removeIf(author -> author.getName().equals(name));
         if (isRemoved) {
@@ -158,6 +175,7 @@ public class Library {
         }
     }
 
+    // list author and item methods
     public void listAuthors() {
         for (Author author : authors) {
             System.out.println(author);
@@ -170,6 +188,7 @@ public class Library {
         }
     }
 
+    // list items by author
     public void listAuthorItems(List<LibraryItem> list, Author author) {
         System.out.printf("List of titles by %s:\n", author.getName());
 
@@ -178,6 +197,7 @@ public class Library {
         }
     }
 
+    // borrow and return items methods
     public LibraryItem copyItem(LibraryItem item, int copies) {
         LibraryItem copy = null;
 
@@ -200,6 +220,7 @@ public class Library {
         return copy;
     }
 
+    // borrow items method
     public void borrowItems(Scanner scanner) {
         while (true) {
             Menu.clearScreen();
@@ -414,6 +435,7 @@ public class Library {
         }
     }
 
+    // return items method
     public void returnItems(Scanner scanner) {
         while (true) {
             Menu.clearScreen();
@@ -487,8 +509,11 @@ public class Library {
     }
 
     // managers
+
+    // author manager method
     public void authorManager(Scanner scanner) {
         while (true) {
+            // display author management menu
             Menu.clearScreen();
             System.out.println("Author Management\n");
             System.out.println("1. Add Author");
@@ -504,6 +529,7 @@ public class Library {
 
             switch (choice) {
                 case 1:
+                    // add author option
                     System.out.print("Enter author's name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter author's date of birth (YYYY-MM-DD): ");
@@ -514,6 +540,7 @@ public class Library {
                     break;
 
                 case 2:
+                    // edit author option
                     System.out.print("Enter the name of the author to edit: ");
                     String oldName = scanner.nextLine();
                     System.out.print("Enter the new name: ");
@@ -525,6 +552,7 @@ public class Library {
                     break;
 
                 case 3:
+                    // delete author option
                     System.out.print("Enter the name of the author to delete: ");
                     String nameToDelete = scanner.nextLine();
                     this.deleteAuthor(nameToDelete);
@@ -532,6 +560,7 @@ public class Library {
                     break;
 
                 case 4:
+                    // list authors option
                     this.listAuthors();
                     System.out.print("\nPress any key to continue...");
                     scanner.nextLine();
@@ -548,6 +577,7 @@ public class Library {
 
     public void itemManager(Scanner scanner) {
         while (true) {
+            // display item management menu
             Menu.clearScreen();
             System.out.println("Item Management\n");
             System.out.println("1. Add Item");
@@ -563,6 +593,7 @@ public class Library {
 
             switch (choice) {
                 case 1:
+                    // add item option
                     System.out.print("Enter item ID: ");
                     String itemID = scanner.nextLine();
                     System.out.print("Enter title: ");
@@ -579,6 +610,7 @@ public class Library {
                         }
                     }
 
+                    // if author does not exist, get DOB and add author
                     if (itemAuthor == null) {
                         System.out.print("Enter author DOB: ");
                         String authorDOB = scanner.nextLine();
@@ -600,6 +632,7 @@ public class Library {
                     scanner.nextLine();
 
                     if (type == 1) {
+                        // periodical item option under add item
                         System.out.print("Enter issue number: ");
                         String issueNumber = scanner.nextLine();
                         System.out.print("Enter publication date (YYYY-MM-DD): ");
@@ -614,6 +647,7 @@ public class Library {
                         scanner.nextLine();
 
                         if (subtype == 1) {
+                            // printed periodical item option
                             System.out.print("Enter number of pages: ");
                             int numPages = scanner.nextInt();
 
@@ -622,6 +656,7 @@ public class Library {
                                     numPages);
                             addItem(newPrintedPeriodicalItem);
                         } else if (subtype == 2) {
+                            // electronic periodical item option
                             System.out.print("Enter url: ");
                             String url = scanner.nextLine();
 
@@ -632,6 +667,7 @@ public class Library {
                         }
 
                     } else if (type == 2) {
+                        // book item option under add item
                         System.out.print("Enter edition: ");
                         String edition = scanner.nextLine();
                         System.out.print("Enter category: ");
@@ -646,6 +682,7 @@ public class Library {
 
                         switch (subtype) {
                             case 1:
+                                // printed book item option
                                 System.out.print("Enter number of pages: ");
                                 int numPages = scanner.nextInt();
                                 System.out.print("Hardcover (true or false): ");
@@ -658,6 +695,7 @@ public class Library {
                                 addItem(newPrintedBookItem);
                                 break;
                             case 2:
+                                // electronic book item option
                                 System.out.print("Enter url: ");
                                 String url = scanner.nextLine();
                                 System.out.print("DRM (true or false): ");
@@ -671,6 +709,7 @@ public class Library {
                                 addItem(newElectronicBookItem);
                                 break;
                             case 3:
+                                // audio book item option
                                 System.out.print("Enter narrator name: ");
                                 String narrator = scanner.nextLine();
                                 System.out.print("DRM (true or false): ");
@@ -706,6 +745,7 @@ public class Library {
 
                     switch (editchoice) {
                         case 1:
+                            // edit by title
                             System.out.print("Enter title: ");
                             String editTitleName = scanner.nextLine();
 
@@ -731,6 +771,7 @@ public class Library {
                             scanner.nextLine();
                             break;
                         case 2:
+                            // edit by author
                             Menu.clearScreen();
 
                             System.out.print("Enter author name: ");
@@ -781,6 +822,7 @@ public class Library {
                             scanner.nextLine();
                             break;
                         case 3:
+                            // edit by ISBN
                             System.out.print("Enter ISBN: ");
                             String editISBN = scanner.nextLine();
 
@@ -888,6 +930,7 @@ public class Library {
                     break;
 
                 case 4:
+                    // list items option
                     this.listItems();
                     System.out.print("Press any key to continue...");
                     scanner.nextLine();

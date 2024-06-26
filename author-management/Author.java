@@ -2,16 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Author {
+    // instance variables
     private String name;
     private String dateOfBirth;
     private List<LibraryItem> itemsWritten;
 
+    // constructors
     public Author(String name, String dateOfBirth) {
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.itemsWritten = new ArrayList<>();
     }
 
+    // getters and setters
     public Author(String name) {
         this.name = name;
     }
@@ -40,6 +43,7 @@ public class Author {
         this.dateOfBirth = dateOfBirth;
     }
 
+    // methods
     @Override
     public String toString() {
         return "\nAuthor" +
