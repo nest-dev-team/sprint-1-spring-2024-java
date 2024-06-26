@@ -1,19 +1,14 @@
-
 public class PatronEmployee extends Patron {
-    
+    // instance variables
     String employeeId;
 
-    //constructor
-    public PatronEmployee(String name, String address, String phoneNumber, String type, String employeeId) {
-        super(name, address, phoneNumber, type);
-
-
+    // constructor
+    public PatronEmployee(String name, String address, String phoneNumber, String employeeId) {
+        super(name, address, phoneNumber);
         this.employeeId = employeeId;
-
     }
 
-    //getters and setters
-
+    // getters and setters
     public String getEmployeeId(String employeeId) {
         return employeeId;
     }

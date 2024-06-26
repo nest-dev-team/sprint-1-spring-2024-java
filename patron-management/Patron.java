@@ -1,21 +1,19 @@
+import java.util.ArrayList;
 import java.util.List;
-//import list
 
 public abstract class Patron {
     // instance variables
     private String name;
     private String address;
     private String phoneNumber;
-    private String type;
     private List<LibraryItem> itemsBorrowed;
 
     // constructor
-    public Patron(String name, String address, String phoneNumber, String type) {
+    public Patron(String name, String address, String phoneNumber) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
-        this.type = type;
-
+        this.itemsBorrowed = new ArrayList<>();
     }
 
     // getters and setters
@@ -43,14 +41,6 @@ public abstract class Patron {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public List<LibraryItem> getItemsBorrowed() {
         return itemsBorrowed;
     }
@@ -75,7 +65,7 @@ public abstract class Patron {
 
     @Override
     public String toString() {
-        return String.format("Patron name: %s, Address: %s, Phone number: %s, Patron Type: %s", name, address,
-                phoneNumber, type);
+        return String.format("Patron name: %s, Address: %s, Phone number: %s", name, address,
+                phoneNumber);
     }
 }

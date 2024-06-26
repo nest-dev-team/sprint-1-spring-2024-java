@@ -16,6 +16,14 @@ public class BookAudio extends Book {
         this.narrator = narrator;
     }
 
+    public BookAudio(BookAudio obj) {
+        super(obj.getItemId(), obj.getTitle(), obj.getAuthor(), obj.getISBN(), obj.getPublisher(), obj.getNumCopies(),
+                obj.getEdition(), obj.getCategory());
+        this.DRM = obj.DRM;
+        this.length = obj.length;
+        this.narrator = obj.narrator;
+    }
+
     // getters and setters
     public boolean hasDRM() {
         return DRM;

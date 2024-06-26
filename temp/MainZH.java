@@ -2,8 +2,6 @@ package temp;
 
 import java.util.Scanner;
 
-import Patron;
-
 public class MainZH {
 
     public static void main(String[] args) {

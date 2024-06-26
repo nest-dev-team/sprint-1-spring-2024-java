@@ -11,6 +11,12 @@ public class PeriodicalPrinted extends Periodical {
         this.numPages = numPages;
     }
 
+    public PeriodicalPrinted(PeriodicalPrinted obj) {
+        super(obj.getItemId(), obj.getTitle(), obj.getAuthor(), obj.getISBN(), obj.getPublisher(), obj.getNumCopies(),
+                obj.getIssueNumber(), obj.getPublicationDate(), obj.getFrequency());
+        this.numPages = obj.numPages;
+    }
+
     // getters and setters
     public int getNumPages() {
         return numPages;
