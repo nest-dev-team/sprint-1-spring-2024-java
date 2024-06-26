@@ -13,6 +13,13 @@ public class BookElectronic extends Book {
         this.url = url;
     }
 
+    public BookElectronic(BookElectronic obj) {
+        super(obj.getItemId(), obj.getTitle(), obj.getAuthor(), obj.getISBN(), obj.getPublisher(), obj.getNumCopies(),
+                obj.getEdition(), obj.getCategory());
+        this.DRM = obj.DRM;
+        this.url = obj.url;
+    }
+
     // getters and setters
     public Boolean hasDRM() {
         return DRM;

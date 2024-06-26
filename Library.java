@@ -27,16 +27,15 @@ public class Library {
         return result;
     }
 
-    public LibraryItem searchByAuthor(String authorName) {
-        LibraryItem result = null;
+    public List<LibraryItem> searchByAuthor(String authorName) {
+        List<LibraryItem> authorItems = new ArrayList<>();
 
         for (LibraryItem item : items) {
             if (item.getAuthor().getName().equals(authorName)) {
-                result = item;
-                break;
+                authorItems.add(item);
             }
         }
-        return result;
+        return authorItems;
     }
 
     public LibraryItem searchByISBN(String ISBN) {
@@ -50,6 +49,36 @@ public class Library {
         }
 
         return result;
+    }
+
+    public Patron searchPatron(String patronName) {
+        Patron result = null;
+
+        for (Patron patron : patrons) {
+            if (patron.getName().equals(patronName)) {
+                result = patron;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public Author searchAuthor(String name) {
+        Author result = null;
+
+        for (Author author : authors) {
+            if (author.getName().equals(name)) {
+                result = author;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public void addPatron(Patron patron) {
+        this.patrons.add(patron);
     }
 
     public void addItem(LibraryItem item) {
@@ -104,6 +133,321 @@ public class Library {
     public void listItems() {
         for (LibraryItem item : items) {
             System.out.println(item + "\n");
+        }
+    }
+
+    public void listAuthorItems(List<LibraryItem> list, Author author) {
+        System.out.printf("List of titles by %s:\n", author.getName());
+
+        for (LibraryItem item : list) {
+            System.out.println("\t" + item.getTitle());
+        }
+    }
+
+    public LibraryItem copyItem(LibraryItem item, int copies) {
+        LibraryItem copy = null;
+
+        if (item.getClass().getName() == "BookAudio")
+            copy = new BookAudio((BookAudio) item);
+
+        if (item.getClass().getName() == "BookElectronic")
+            copy = new BookElectronic((BookElectronic) item);
+
+        if (item.getClass().getName() == "BookPrinted")
+            copy = new BookPrinted((BookPrinted) item);
+
+        if (item.getClass().getName() == "PeriodicalElectronic")
+            copy = new PeriodicalElectronic((PeriodicalElectronic) item);
+
+        if (item.getClass().getName() == "PeriodicalPrinted")
+            copy = new PeriodicalPrinted((PeriodicalPrinted) item);
+
+        copy.setNumCopies(copies);
+        return copy;
+    }
+
+    public void borrowItems(Scanner scanner) {
+        while (true) {
+            Menu.clearScreen();
+            System.out.println("Borrow Items");
+            System.out.println("\n1. Search by Title");
+            System.out.println("2. Search by Author Name");
+            System.out.println("3. Search by ISBN");
+            System.out.println("4. Back to Main Menu");
+            System.out.print("\nChoose an option: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+
+            int numberToBorrow;
+            int origCopies;
+            String title;
+            String ISBN;
+            String patronName;
+            LibraryItem titleResult = null;
+            LibraryItem copy = null;
+            Patron patronResult;
+
+            switch (choice) {
+                case 1:
+                    Menu.clearScreen();
+
+                    System.out.print("Enter title: ");
+                    title = scanner.nextLine();
+
+                    // check if item exists
+                    titleResult = searchByTitle(title);
+                    if (titleResult == null) {
+                        System.out.println("Title does not exist.");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    System.out.print("Who is borrowing (enter patron name)?: ");
+                    patronName = scanner.nextLine();
+
+                    // check if patron exists
+                    patronResult = searchPatron(patronName);
+                    if (patronResult == null) {
+                        System.out.println("Patron does not exist");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    System.out.print("How many copies would you like to borrow?: ");
+                    numberToBorrow = scanner.nextInt();
+                    scanner.nextLine();
+
+                    // if there are not enough copies to borrow
+                    if (titleResult.getNumCopies() < numberToBorrow) {
+                        System.out.printf("Not enough copies to borrow. Only %d copie(s) available.\n",
+                                titleResult.getNumCopies());
+                        System.out.println("\n");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    // copy item and add to list with copies set to number to borrow
+                    copy = copyItem(titleResult, numberToBorrow);
+                    patronResult.addItemBorrowed(copy);
+
+                    // remove items borrowed from item num copies
+                    titleResult.setNumCopies(titleResult.getNumCopies() - numberToBorrow);
+
+                    // display result
+                    System.out.printf("%d copie(s) of %s borrowed by %s successfully.", numberToBorrow,
+                            titleResult.getTitle(), patronResult.getName());
+                    System.out.print("\nPress any key to continue...");
+                    scanner.nextLine();
+                    break;
+                case 2:
+                    Menu.clearScreen();
+
+                    System.out.print("Enter author name: ");
+                    String authorName = scanner.nextLine();
+
+                    // check if author exists
+                    Author authorResult = searchAuthor(authorName);
+                    if (authorResult == null) {
+                        System.out.println("Author does not exist.");
+                        break;
+                    }
+
+                    // display all titles by provided author
+                    List<LibraryItem> authorList = searchByAuthor(authorName);
+                    listAuthorItems(authorList, authorResult);
+
+                    //
+                    System.out.print("Enter title from titles list: ");
+                    title = scanner.nextLine();
+
+                    // check if item exists
+                    for (LibraryItem item : authorList) {
+                        if (item.getTitle().equals(title)) {
+                            titleResult = item;
+                        }
+                    }
+
+                    if (titleResult == null) {
+                        System.out.println("Title does not exist.");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    System.out.print("Who is borrowing (enter patron name)?: ");
+                    patronName = scanner.nextLine();
+
+                    // check if patron exists
+                    patronResult = searchPatron(patronName);
+                    if (patronResult == null) {
+                        System.out.println("Patron does not exist");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    System.out.print("How many copies would you like to borrow?: ");
+                    numberToBorrow = scanner.nextInt();
+                    scanner.nextLine();
+
+                    // if there are not enough copies to borrow
+                    if (titleResult.getNumCopies() < numberToBorrow) {
+                        System.out.printf("Not enough copies to borrow. Only %d copie(s) available.\n",
+                                titleResult.getNumCopies());
+                        System.out.println("\n");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    // copy item and add to list with copies set to number to borrow
+                    copy = copyItem(titleResult, numberToBorrow);
+                    patronResult.addItemBorrowed(copy);
+
+                    // remove items borrowed from item num copies
+                    titleResult.setNumCopies(titleResult.getNumCopies() - numberToBorrow);
+
+                    // display result
+                    System.out.printf("%d copie(s) of %s borrowed by %s successfully.", numberToBorrow,
+                            titleResult.getTitle(), patronResult.getName());
+                    System.out.print("\nPress any key to continue...");
+                    scanner.nextLine();
+                    break;
+                case 3:
+                    Menu.clearScreen();
+
+                    System.out.print("Enter ISBN: ");
+                    ISBN = scanner.nextLine();
+
+                    // check if item exists
+                    titleResult = searchByISBN(ISBN);
+                    if (titleResult == null) {
+                        System.out.println("No title with that ISBN.");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    System.out.printf("%s selected.\n", titleResult.getTitle());
+                    System.out.print("Who is borrowing (enter patron name)?: ");
+                    patronName = scanner.nextLine();
+
+                    // check if patron exists
+                    patronResult = searchPatron(patronName);
+                    if (patronResult == null) {
+                        System.out.println("Patron does not exist");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    System.out.print("How many copies would you like to borrow?: ");
+                    numberToBorrow = scanner.nextInt();
+                    scanner.nextLine();
+
+                    // if there are not enough copies to borrow
+                    if (titleResult.getNumCopies() < numberToBorrow) {
+                        System.out.printf("Not enough copies to borrow. Only %d copie(s) available.\n",
+                                titleResult.getNumCopies());
+                        System.out.println("\n");
+                        System.out.print("\nPress any key to continue...");
+                        scanner.nextLine();
+                        break;
+                    }
+
+                    // copy item and add to list with copies set to number to borrow
+                    copy = copyItem(titleResult, numberToBorrow);
+                    patronResult.addItemBorrowed(copy);
+
+                    // remove items borrowed from item num copies
+                    titleResult.setNumCopies(titleResult.getNumCopies() - numberToBorrow);
+
+                    // display result
+                    System.out.printf("%d copie(s) of %s borrowed by %s successfully.", numberToBorrow,
+                            titleResult.getTitle(), patronResult.getName());
+                    System.out.print("\nPress any key to continue...");
+                    scanner.nextLine();
+                    break;
+                case 4:
+                    Menu.clearScreen();
+                    return;
+            }
+        }
+    }
+
+    public void returnItems(Scanner scanner) {
+        while (true) {
+            Menu.clearScreen();
+            System.out.println("Return Items\n");
+            System.out.print("Who is returning (enter patron name)?: ");
+            String patronName = scanner.nextLine();
+
+            Patron patronResult = searchPatron(patronName);
+
+            if (patronResult == null) {
+                System.out.println("Patron does not exist");
+                System.out.print("\nPress any key to continue...");
+                scanner.nextLine();
+                break;
+            }
+
+            if (patronResult.getItemsBorrowed().isEmpty()) {
+                System.out.println("Patron has no items to return.");
+                System.out.print("\nPress any key to continue...");
+                scanner.nextLine();
+                break;
+            }
+
+            for (LibraryItem item : patronResult.getItemsBorrowed()) {
+                System.out.printf("Title: %s, Copies Borrowed: %d\n", item.getTitle(), item.getNumCopies());
+            }
+
+            System.out.print("Enter title from titles list: ");
+            String title = scanner.nextLine();
+
+            // check if item exists
+            LibraryItem titleResult = null;
+            for (LibraryItem item : patronResult.getItemsBorrowed()) {
+                if (item.getTitle().equals(title)) {
+                    titleResult = item;
+                }
+            }
+
+            if (titleResult == null) {
+                System.out.println("Title not in list.");
+                System.out.print("\nPress any key to continue...");
+                scanner.nextLine();
+                break;
+            }
+
+            System.out.print("How many copies would you like to return?: ");
+            int numberToReturn = scanner.nextInt();
+            scanner.nextLine();
+
+            // if there are not enough copies to borrow
+            if (titleResult.getNumCopies() < numberToReturn) {
+                System.out.printf("Not enough copies to return. Only %d copie(s) borrowed.\n",
+                        titleResult.getNumCopies());
+                System.out.print("Press any key to continue...");
+                scanner.nextLine();
+                break;
+            }
+
+            titleResult.setNumCopies(titleResult.getNumCopies() - numberToReturn);
+
+            if (titleResult.getNumCopies() <= 0)
+                patronResult.removeItemBorrowed(titleResult);
+
+            // display result
+            System.out.printf("%d copie(s) of %s return by %s successfully.", numberToReturn,
+                    titleResult.getTitle(), patronResult.getName());
+            System.out.print("\nPress any key to continue...");
+            scanner.nextLine();
+            break;
         }
     }
 

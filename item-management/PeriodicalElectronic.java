@@ -11,6 +11,12 @@ public class PeriodicalElectronic extends Periodical {
         this.url = url;
     }
 
+    public PeriodicalElectronic(PeriodicalElectronic obj) {
+        super(obj.getItemId(), obj.getTitle(), obj.getAuthor(), obj.getISBN(), obj.getPublisher(), obj.getNumCopies(),
+                obj.getIssueNumber(), obj.getPublicationDate(), obj.getFrequency());
+        this.url = obj.url;
+    }
+
     // getters and setters
     public String getUrl() {
         return url;

@@ -13,11 +13,14 @@ public class Menu {
         clearScreen();
 
         while (true) {
+            clearScreen();
             System.out.println("Library Management System\n");
-            System.out.println("1. Manage Items");
-            System.out.println("2. Manage Authors");
-            System.out.println("3. Manage Patrons");
-            System.out.println("4. Exit\n");
+            System.out.println("1. Borrow Items");
+            System.out.println("2. Return Items");
+            System.out.println("3. Manage Items");
+            System.out.println("4. Manage Authors");
+            System.out.println("5. Manage Patrons");
+            System.out.println("6. Exit\n");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -26,21 +29,28 @@ public class Menu {
 
             switch (choice) {
                 case 1:
-                    library.itemManager(scanner);
+                    library.borrowItems(scanner);
                     break;
                 case 2:
-                    library.authorManager(scanner);
+                    library.returnItems(scanner);
                     break;
                 case 3:
-                    library.patronManager(scanner);
+                    library.itemManager(scanner);
                     break;
                 case 4:
+                    library.authorManager(scanner);
+                    break;
+                case 5:
+                    library.patronManager(scanner);
+                    break;
+                case 6:
                     System.out.println("End Session. Thank you.");
                     scanner.close();
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
+
         }
     }
 }

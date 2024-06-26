@@ -13,6 +13,13 @@ public class BookPrinted extends Book {
         this.hardcover = hardcover;
     }
 
+    public BookPrinted(BookPrinted obj) {
+        super(obj.getItemId(), obj.getTitle(), obj.getAuthor(), obj.getISBN(), obj.getPublisher(), obj.getNumCopies(),
+                obj.getEdition(), obj.getCategory());
+        this.numPages = obj.numPages;
+        this.hardcover = obj.hardcover;
+    }
+
     // getters and setters
     public int getNumPages() {
         return numPages;
