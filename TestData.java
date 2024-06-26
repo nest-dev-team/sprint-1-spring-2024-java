@@ -1,16 +1,4 @@
-// Make sure to update Main class in Main.java and add another addAuthor method in Library.java
-
-// public class Main {
-//     public static void main(String[] args) {
-//         Library library = new Library();
-//         TestData.loadItems(library);
-//     }
-// }
-
-// public void addAuthor(Author author) {
-//     this.authors.add(author);
-// }
-
+// Load test data into the library
 
 public class TestData {
     public static void loadItems(Library library) {
@@ -298,7 +286,33 @@ public class TestData {
         library.addItem(audioBook8);
         library.addItem(audioBook9);
         library.addItem(audioBook10);
-    }
+
+        // Create and add Employee Patrons
+        PatronEmployee employee1 = new PatronEmployee("Alice Smith", "123 Main St", "555-1234", "Employee", "E001");
+        PatronEmployee employee2 = new PatronEmployee("Bob Johnson", "456 Elm St", "555-5678", "Employee", "E002");
+        PatronEmployee employee3 = new PatronEmployee("Carol Williams", "789 Oak St", "555-8765", "Employee", "E003");
+        PatronEmployee employee4 = new PatronEmployee("David Brown", "101 Pine St", "555-4321", "Employee", "E004");
+        PatronEmployee employee5 = new PatronEmployee("Eve Davis", "202 Maple St", "555-1357", "Employee", "E005");
+
+        library.addPatron(employee1);
+        library.addPatron(employee2);
+        library.addPatron(employee3);
+        library.addPatron(employee4);
+        library.addPatron(employee5);
+
+        // Create and add Student Patrons
+        PatronStudent student1 = new PatronStudent("Frank Moore", "303 Birch St", "555-2468", "Student", "S001");
+        PatronStudent student2 = new PatronStudent("Grace Hall", "404 Cedar St", "555-3579", "Student", "S002");
+        PatronStudent student3 = new PatronStudent("Hank Adams", "505 Walnut St", "555-4680", "Student", "S003");
+        PatronStudent student4 = new PatronStudent("Ivy Baker", "606 Ash St", "555-5791", "Student", "S004");
+        PatronStudent student5 = new PatronStudent("Jack Carter", "707 Beech St", "555-6802", "Student", "S005");
+
+        library.addPatron(student1);
+        library.addPatron(student2);
+        library.addPatron(student3);
+        library.addPatron(student4);
+        library.addPatron(student5);
+        }
 }
 
 
