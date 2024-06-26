@@ -27,15 +27,8 @@ public class Library {
         return result;
     }
 
-    public List<LibraryItem> searchByAuthor(String authorName) {
-        List<LibraryItem> authorItems = new ArrayList<>();
-
-        for (LibraryItem item : items) {
-            if (item.getAuthor().getName().equals(authorName)) {
-                authorItems.add(item);
-            }
-        }
-        return authorItems;
+    public List<LibraryItem> searchByAuthor(Author author) {
+        return author.getItemsWritten();
     }
 
     public LibraryItem searchByISBN(String ISBN) {
@@ -299,7 +292,7 @@ public class Library {
                     }
 
                     // display all titles by provided author
-                    List<LibraryItem> authorList = searchByAuthor(authorName);
+                    List<LibraryItem> authorList = searchByAuthor(authorResult);
                     listAuthorItems(authorList, authorResult);
 
                     //
@@ -753,7 +746,7 @@ public class Library {
                             }
 
                             // display all titles by provided author
-                            List<LibraryItem> authorList = searchByAuthor(editAuthorName);
+                            List<LibraryItem> authorList = searchByAuthor(authorResult);
                             listAuthorItems(authorList, authorResult);
 
                             //
@@ -849,7 +842,7 @@ public class Library {
                             }
 
                             // display all titles by provided author
-                            List<LibraryItem> authorList = searchByAuthor(authorNameDelete);
+                            List<LibraryItem> authorList = searchByAuthor(authorResult);
                             listAuthorItems(authorList, authorResult);
 
                             //

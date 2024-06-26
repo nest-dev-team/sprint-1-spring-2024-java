@@ -4,7 +4,7 @@ import java.util.List;
 public class Author {
     private String name;
     private String dateOfBirth;
-    private List<String> itemsWritten;
+    private List<LibraryItem> itemsWritten;
 
     public Author(String name, String dateOfBirth) {
         this.name = name;
@@ -24,11 +24,11 @@ public class Author {
         return dateOfBirth;
     }
 
-    public List<String> getItemsWritten() {
+    public List<LibraryItem> getItemsWritten() {
         return itemsWritten;
     }
 
-    public void addItem(String item) {
+    public void addItem(LibraryItem item) {
         this.itemsWritten.add(item);
     }
 
@@ -45,7 +45,6 @@ public class Author {
         return "\nAuthor" +
                 "Name: " + name + '\n' +
                 "Date Of Birth: " + dateOfBirth + '\n' +
-                "Items Written: " + itemsWritten 
-                ;
+                "Items Written: " + itemsWritten;
     }
 }

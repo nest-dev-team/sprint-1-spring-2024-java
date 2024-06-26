@@ -67,6 +67,17 @@ public class TestData {
                 library.addItem(printedPeriodical9);
                 library.addItem(printedPeriodical10);
 
+                author1.addItem(printedPeriodical1);
+                author2.addItem(printedPeriodical2);
+                author3.addItem(printedPeriodical3);
+                author4.addItem(printedPeriodical4);
+                author5.addItem(printedPeriodical5);
+                author6.addItem(printedPeriodical6);
+                author7.addItem(printedPeriodical7);
+                author8.addItem(printedPeriodical8);
+                author9.addItem(printedPeriodical9);
+                author10.addItem(printedPeriodical10);
+
                 // Create and add Electronic Periodicals
                 PeriodicalElectronic electronicPeriodical1 = new PeriodicalElectronic(
                                 "P011", "Wired", author1, "9781234567893", "Condé Nast",
@@ -108,6 +119,17 @@ public class TestData {
                 library.addItem(electronicPeriodical8);
                 library.addItem(electronicPeriodical9);
                 library.addItem(electronicPeriodical10);
+
+                author1.addItem(electronicPeriodical1);
+                author2.addItem(electronicPeriodical2);
+                author3.addItem(electronicPeriodical3);
+                author4.addItem(electronicPeriodical4);
+                author5.addItem(electronicPeriodical5);
+                author6.addItem(electronicPeriodical6);
+                author7.addItem(electronicPeriodical7);
+                author8.addItem(electronicPeriodical8);
+                author9.addItem(electronicPeriodical9);
+                author10.addItem(electronicPeriodical10);
 
                 // Create and add Printed Books
                 BookPrinted printedBook1 = new BookPrinted(
@@ -153,6 +175,17 @@ public class TestData {
                 library.addItem(printedBook9);
                 library.addItem(printedBook10);
 
+                author1.addItem(printedBook1);
+                author2.addItem(printedBook2);
+                author3.addItem(printedBook3);
+                author4.addItem(printedBook4);
+                author5.addItem(printedBook5);
+                author6.addItem(printedBook6);
+                author7.addItem(printedBook7);
+                author8.addItem(printedBook8);
+                author9.addItem(printedBook9);
+                author10.addItem(printedBook10);
+
                 // Create and add Electronic Books
                 BookElectronic electronicBook1 = new BookElectronic(
                                 "B011", "Harry Potter and the Chamber of Secrets", author1, "9780747538493",
@@ -186,6 +219,7 @@ public class TestData {
                 BookElectronic electronicBook10 = new BookElectronic(
                                 "B020", "Tender Is the Night", author10, "9780684801544", "Charles Scribner's Sons",
                                 13, "First", "Tragedy", true, "www.fscottfitzgerald.com");
+
                 library.addItem(electronicBook1);
                 library.addItem(electronicBook2);
                 library.addItem(electronicBook3);
@@ -196,6 +230,17 @@ public class TestData {
                 library.addItem(electronicBook8);
                 library.addItem(electronicBook9);
                 library.addItem(electronicBook10);
+
+                author1.addItem(electronicBook1);
+                author2.addItem(electronicBook2);
+                author3.addItem(electronicBook3);
+                author4.addItem(electronicBook4);
+                author5.addItem(electronicBook5);
+                author6.addItem(electronicBook6);
+                author7.addItem(electronicBook7);
+                author8.addItem(electronicBook8);
+                author9.addItem(electronicBook9);
+                author10.addItem(electronicBook10);
 
                 // Create and add Audio Books
                 BookAudio audioBook1 = new BookAudio(
@@ -231,6 +276,7 @@ public class TestData {
                                 "B030", "The Beautiful and Damned", author10, "9780684801483",
                                 "Charles Scribner's Sons",
                                 11, "First", "Tragedy", true, 17.5, "Robert Fass");
+
                 library.addItem(audioBook1);
                 library.addItem(audioBook2);
                 library.addItem(audioBook3);
@@ -241,6 +287,17 @@ public class TestData {
                 library.addItem(audioBook8);
                 library.addItem(audioBook9);
                 library.addItem(audioBook10);
+
+                author1.addItem(audioBook1);
+                author2.addItem(audioBook2);
+                author3.addItem(audioBook3);
+                author4.addItem(audioBook4);
+                author5.addItem(audioBook5);
+                author6.addItem(audioBook6);
+                author7.addItem(audioBook7);
+                author8.addItem(audioBook8);
+                author9.addItem(audioBook9);
+                author10.addItem(audioBook10);
 
                 // Create and add Employee Patrons
                 PatronEmployee employee1 = new PatronEmployee("Alice Smith", "123 Main St", "555-1234", "E001");
