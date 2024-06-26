@@ -85,8 +85,49 @@ public class Library {
         this.items.add(item);
     }
 
-    public void editItem() {
-        // TODO
+    public LibraryItem editItem(LibraryItem item, String param, String newValue) {
+        switch (param) {
+            case "Title":
+                item.setTitle(newValue);
+                System.out.println("Title updated successfully.");
+                break;
+            case "Item ID":
+                item.setItemId(newValue);
+                System.out.println("Item ID updated successfully.");
+                break;
+            case "Author":
+                System.out.println("Cannot edit author.");
+                break;
+            case "ISBN":
+                item.setISBN(newValue);
+                System.out.println("ISBN updated successfully.");
+                break;
+            case "Publisher":
+                item.setPublisher(newValue);
+                System.out.println("Publisher updated successfully.");
+                break;
+            case "Number of Copies":
+                item.setNumCopies(Integer.parseInt(newValue));
+                System.out.println("Number of copies updated successfully.");
+                break;
+
+            case "Frequency":
+            case "URL":
+            case "Issue Number":
+            case "Publication Date":
+            case "DRM":
+            case "Length":
+            case "Narrator":
+            case "Number of Pages":
+            case "Hardcover":
+                System.out.printf("\n%s is an item-specific paramater, and cannot be edited at this time.\n", param);
+                break;
+            default:
+                System.out.printf("\n%s is not a valid paramater.\n");
+                break;
+        }
+
+        return item;
     }
 
     public void deleteItem(LibraryItem item) {
@@ -666,12 +707,109 @@ public class Library {
                     System.out.println("Do you want to edit by 1) Title, 2) Author Name, or 3) ISBN?");
                     int editchoice = scanner.nextInt();
                     scanner.nextLine();
+
+                    String param;
+                    String value;
+
                     switch (editchoice) {
                         case 1:
+                            System.out.print("Enter title: ");
+                            String editTitleName = scanner.nextLine();
+
+                            LibraryItem editTitleItem = searchByTitle(editTitleName);
+
+                            if (editTitleItem == null) {
+                                System.out.println("No item with that title exists.");
+                                System.out.println("Press any key to continue...");
+                                scanner.nextLine();
+                                break;
+                            }
+
+                            System.out.println(editTitleItem);
+                            System.out.print("\nEnter paramater from list you wish to edit: ");
+                            param = scanner.nextLine();
+
+                            System.out.print("Enter new value: ");
+                            value = scanner.nextLine();
+
+                            editItem(editTitleItem, param, value);
+
+                            System.out.println("Press any key to continue...");
+                            scanner.nextLine();
                             break;
                         case 2:
+                            Menu.clearScreen();
+
+                            System.out.print("Enter author name: ");
+                            String editAuthorName = scanner.nextLine();
+
+                            // check if author exists
+                            Author authorResult = searchAuthor(editAuthorName);
+                            if (authorResult == null) {
+                                System.out.println("Author does not exist.");
+                                System.out.print("\nPress any key to continue...");
+                                scanner.nextLine();
+                                break;
+                            }
+
+                            // display all titles by provided author
+                            List<LibraryItem> authorList = searchByAuthor(editAuthorName);
+                            listAuthorItems(authorList, authorResult);
+
+                            //
+                            System.out.print("Enter title from titles list: ");
+                            title = scanner.nextLine();
+
+                            // check if item exists
+                            LibraryItem titleResult = null;
+                            for (LibraryItem item : authorList) {
+                                if (item.getTitle().equals(title)) {
+                                    titleResult = item;
+                                }
+                            }
+
+                            if (titleResult == null) {
+                                System.out.println("Title does not exist.");
+                                System.out.print("\nPress any key to continue...");
+                                scanner.nextLine();
+                                break;
+                            }
+
+                            System.out.println(titleResult);
+                            System.out.print("\nEnter paramater from list you wish to edit: ");
+                            param = scanner.nextLine();
+
+                            System.out.print("Enter new value: ");
+                            value = scanner.nextLine();
+
+                            editItem(titleResult, param, value);
+
+                            System.out.println("Press any key to continue...");
+                            scanner.nextLine();
                             break;
                         case 3:
+                            System.out.print("Enter ISBN: ");
+                            String editISBN = scanner.nextLine();
+
+                            LibraryItem editISBNItem = searchByISBN(editISBN);
+
+                            if (editISBNItem == null) {
+                                System.out.println("No item with that title exists.");
+                                System.out.println("Press any key to continue...");
+                                break;
+                            }
+
+                            System.out.println(editISBNItem);
+                            System.out.print("\nEnter paramater from list you wish to edit: ");
+                            param = scanner.nextLine();
+
+                            System.out.print("Enter new value: ");
+                            value = scanner.nextLine();
+
+                            editItem(editISBNItem, param, value);
+
+                            System.out.println("Press any key to continue...");
+                            scanner.nextLine();
                             break;
                         default:
                             System.out.println("Invalid choice.");
@@ -769,8 +907,5 @@ public class Library {
                     System.out.println("Invalid choice. Please try again.");
             }
         }
-    };
-
-    public void patronManager(Scanner scanner) {
     };
 }

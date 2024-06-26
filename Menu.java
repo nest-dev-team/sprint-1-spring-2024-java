@@ -19,8 +19,7 @@ public class Menu {
             System.out.println("2. Return Items");
             System.out.println("3. Manage Items");
             System.out.println("4. Manage Authors");
-            System.out.println("5. Manage Patrons");
-            System.out.println("6. Exit\n");
+            System.out.println("5. Exit\n");
             System.out.print("Choose an option: ");
 
             int choice = scanner.nextInt();
@@ -41,9 +40,6 @@ public class Menu {
                     library.authorManager(scanner);
                     break;
                 case 5:
-                    library.patronManager(scanner);
-                    break;
-                case 6:
                     System.out.println("End Session. Thank you.");
                     scanner.close();
                     return;
